@@ -13,6 +13,6 @@ export CROSS=i386-apple-darwin17-
 mkdir -p cmake-build-release-osx
 cd cmake-build-release-osx
 
-${CROSS}cmake -DCMAKE_BUILD_TYPE=Release ..
+Qt5_DIR=/usr/local/Cellar/qt/5.14.0/lib/cmake/Qt5/ ${CROSS}cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j 4
 

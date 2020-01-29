@@ -20,17 +20,17 @@ set(CMAKE_ARGS
     -Dlibspeech_LIBRARY=${CMAKE_BINARY_DIR}/libspeech/src/libspeech-build/${CMAKE_STATIC_LIBRARY_PREFIX}speech${CMAKE_STATIC_LIBRARY_SUFFIX}
 )
 
-ExternalProject_Add(qt5
-	PREFIX ${CMAKE_BINARY_DIR}/qt5
-	GIT_REPOSITORY https://code.qt.io/qt/qt5.git
-	GIT_TAG v5.14.0
-	GIT_SUBMODULES qtbase
-	GIT_PROGRESS TRUE
-	BUILD_IN_SOURCE 1
-	UPDATE_COMMAND ""
-	CONFIGURE_COMMAND ./configure -opensource -confirm-license -static -qt-zlib -qt-libjpeg -qt-libpng -qt-xcb -qt-freetype -qt-pcre -qt-harfbuzz -no-opengl -prefix ${DEPS_PREFIX}
-	BUILD_COMMAND make -j 4
-)
+#ExternalProject_Add(qt5
+#	PREFIX ${CMAKE_BINARY_DIR}/qt5
+#	GIT_REPOSITORY https://code.qt.io/qt/qt5.git
+#	GIT_TAG v5.14.0
+#	GIT_SUBMODULES qtbase
+#	GIT_PROGRESS TRUE
+#	BUILD_IN_SOURCE 1
+#	UPDATE_COMMAND ""
+#	CONFIGURE_COMMAND ./configure -opensource -confirm-license -static -qt-zlib -qt-libjpeg -qt-libpng -qt-xcb -qt-freetype -qt-pcre -qt-harfbuzz -no-opengl -prefix ${DEPS_PREFIX}
+#	BUILD_COMMAND make -j 4
+#)
 
 ExternalProject_Add(portaudio
 	PREFIX ${CMAKE_BINARY_DIR}/portaudio
@@ -77,5 +77,5 @@ ExternalProject_Add(main
 add_custom_target(speech_analysis)
 
 add_dependencies(libspeech eigen3 fftw3)
-add_dependencies(main qt5 portaudio eigen3 fftw3 libspeech)
+add_dependencies(main portaudio eigen3 fftw3 libspeech)
 add_dependencies(speech_analysis main)
